@@ -1,0 +1,334 @@
+
+:root {
+  --Blue: hsl(246, 80%, 60%);
+
+  --red-400: hsl(15, 100%, 70%);
+  --cyan-400: hsl(195, 74%, 62%);
+  --red-600: hsl(348, 100%, 68%);
+  --green-400: hsl(145, 58%, 55%);
+  --violet-400: hsl(264, 64%, 52%);
+  --orange-300: hsl(43, 84%, 65%);
+
+  --Very-dark-blue: hsl(226, 43%, 10%);
+  --Dark-blue: hsl(235, 46%, 20%);
+  --Desaturated-blue: hsl(235, 39%, 49%);
+  --Pale-Blue: hsl(236, 100%, 87%);
+  --white: hsl(0, 0%, 100%);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* remove animation for people who've turned them off */
+
+@media (prefers-reduced-mottion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  background-color: var(--Very-dark-blue);
+  color: var(--white);
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  font-weight: 400;
+}
+
+.main-grid {
+  padding-block: 4rem;
+  padding-inline: 2rem;
+  display: grid;
+  align-content: center;
+  grid-template-columns: 1fr;
+  gap: 3rem;  
+}
+
+.primary-header {
+  background-color: var(--Dark-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1rem;
+  height:16rem;
+}
+
+.user {
+  padding: 1.5rem;
+  width: 100%;
+  background-color: var(--Blue);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.user > img {
+  max-width: 5rem;
+  border-radius: 100%;
+  border: 3px solid var(--white);
+  align-self: flex-start;
+}
+
+.user > h1 > span {
+  font-size: 0.75rem;
+  font-weight: 300;
+  display: block;
+  padding-block: 0.75rem;
+}
+
+.summarizes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5em;
+  padding-block-end: 2.5rem;
+}
+
+
+.summarizes > button {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  color: var(--Pale-Blue);
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: color 200ms ease-in-out;
+}
+
+.summarizes > button:is(:hover, :focus) {
+  color: var(--white);
+}
+
+.summarizes > button[data-show="true"] {
+  color: var(--white);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+
+.card {
+  background-color: var(--Dark-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 1rem;
+  height: 13rem;
+  overflow: hidden;
+  animation: spin 200ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+
+
+
+.card-content {
+  background-color: var(--Dark-blue);
+  height: 75%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: flex;
+  padding: 1.5rem 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  animation: slide 600ms cubic-bezier(0.215, 0.610, 0.355, 1) ;
+
+}
+
+.card-content:hover {
+  background-color: var(--Desaturated-blue)   ;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header > h2 {
+  font-size: clamp(1.25rem, 10vw + 1rem, 1.5rem);
+  font-weight: 400;
+}
+
+.card-data {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.current-data {
+  font-size: clamp(2rem, 10vw + 1rem, 2.75rem);
+  font-weight: 500;
+}
+
+
+.previous-data {
+  text-transform: capitalize;
+  color: var(--Pale-Blue);
+  word-spacing: 5px;
+  font-size: 1rem;
+  text-align: start;
+}
+
+@media (45rem <= width <= 59.99999rem) {
+  
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+  
+}
+
+@media (min-width:60rem) {
+  
+  .main-grid {
+    padding-inline: 3rem;
+    grid-template-columns: 20% 1fr;
+    gap: 2rem;
+  }
+
+
+  .primary-header {
+    background-color: var(--Dark-blue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1rem;
+    height: auto;
+  }
+  
+
+  .user {
+    padding-block-start: 2rem;
+    padding-inline-start: 2rem;
+    padding-inline-end: 3rem;
+    padding-block-end: 4rem;
+    background-color: var(--Blue);
+    border-radius: 1rem;
+    height: 75%;
+    flex-direction: column;
+  }
+  
+  .summarizes {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.25em;
+    padding-block: 2rem;
+    padding-inline-start: 2rem;
+  }
+    
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+.card {
+  height: 16rem;
+}
+
+.card-data {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+  }
+
+
+
+
+
+.card:nth-of-type(1) {
+  background-color: var(--red-400);
+  background-image: url(../images/icon-work.svg);
+  background-repeat: no-repeat;
+  background-position: top -1rem right 2rem;
+}
+
+.card:nth-of-type(2) {
+  background-color: var(--cyan-400);
+  background-image: url(../images/icon-play.svg);
+  background-repeat: no-repeat;
+  background-position: top -1rem right 2rem;
+}
+.card:nth-of-type(3) {
+  background-color: var(--red-600);
+  background-image: url(../images/icon-study.svg);
+  background-repeat: no-repeat;
+  background-position: top -1rem right 2rem;
+}
+.card:nth-of-type(4) {
+  background-color: var(--green-400);
+  background-image: url(../images/icon-exercise.svg);
+  background-repeat: no-repeat;
+  background-position: top  right 2rem;
+
+}
+.card:nth-of-type(5) {
+  background-color: var(--violet-400);
+  background-image: url(../images/icon-social.svg);
+  background-repeat: no-repeat;
+  background-position: top -1rem right 2rem;
+}
+
+.card:nth-of-type(6) {
+    background-color: var(--orange-300);
+    background-image: url(../images/icon-self-care.svg);
+    background-repeat: no-repeat;
+    background-position: top -1rem right 2rem;
+  }
+  
+  .attribution {
+    text-align: center;
+    padding: .96rem 1.5rem;
+    background-color: var(--Pale-Blue);
+    color: var(--Dark-blue);
+    cursor: pointer;
+    opacity: 0.12;
+    transition: opacity 200ms ease-in-out;
+  }
+
+  .attribution:is(:hover) {
+    opacity: 1;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(1turn) }
+  }
+
+  @keyframes slide {
+    from {
+      transform: translateY(100%) scale(0);
+    }
+    to {
+      transform: translateY(0) scale(1);
+    }
+  }
