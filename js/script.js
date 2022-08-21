@@ -20,7 +20,7 @@ fetch("../data.json")
               n.timeframes.daily.current
             );
 
-            previousElements[i].textContent = updateDisplayPrevious(n.timeframes.daily.previous, "day")  
+            previousElements[i].textContent = updateDisplayYesterday(n.timeframes.daily.previous) 
           }
 
           if (timeFrames === "weekly") {
@@ -47,4 +47,8 @@ function updateDisplayCurrent(n) {
 
 function updateDisplayPrevious (n , s) {
 return n <= 1 && n < 2 ? `last ${s} - ${n}hr` : `last ${s} - ${n}hrs`;
+}
+
+function updateDisplayYesterday(n) {
+  return n <= 1 && n < 2 ? `${n}hr - yesterday` : `${n}hrs - yesterday`;
 }
